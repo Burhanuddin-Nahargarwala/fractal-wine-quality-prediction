@@ -1,0 +1,39 @@
+name: Build and Push Docker image to ECR
+
+on:
+  push:
+    branches:
+      - main  # Triggers on push to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }} # Ensure that region is us-east-1
+
+      - name: Log in to Amazon ECR
+        id: ecr-login
+        run: |
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
+          docker login --username AWS --password-stdin 512357470856.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+
+      - name: Build the Docker image
+        run: |
+          docker build -t fractal-wine-quality-predictor .
+
+      - name: Tag the Docker image
+        run: |
+          docker tag fractal-wine-quality-predictor:latest ${{ secrets.ECR_REPOSITORY_URI }}
+
+      - name: Push the Docker image to ECR
+        run: |
+          docker push ${{ secrets.ECR_REPOSITORY_URI }}

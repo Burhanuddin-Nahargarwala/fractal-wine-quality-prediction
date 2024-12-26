@@ -1,0 +1,6 @@
+.env
+venv/
+videos/
+.vscode/
+__pycache__/
+*.pdf
