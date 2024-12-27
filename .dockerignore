@@ -1,0 +1,8 @@
+.env
+.gitignore
+*.pdf
+__pycache__/
+.github/
+.vscode/
+venv/
+videos/
