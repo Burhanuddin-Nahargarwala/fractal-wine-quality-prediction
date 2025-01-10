@@ -41,3 +41,7 @@ def predict_quality(features: WineFeatures):
     data.columns = [col.replace('_', ' ') for col in data.columns]  # Change underscores to spaces
     prediction = model.predict(data)[0]
     return {"quality": "Good" if prediction == 1 else "Bad"}
+
+@app.get("/hello")
+def print_hello():
+    return {"msg": "Hello World"}

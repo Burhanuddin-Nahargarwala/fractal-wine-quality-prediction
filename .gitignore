@@ -4,3 +4,4 @@ videos/
 .vscode/
 __pycache__/
 *.pdf
+test_early_app/
