@@ -14,17 +14,17 @@ app = FastAPI()
 
 # Define input data structure
 class WineFeatures(BaseModel):
-    fixed_acidity: float
-    volatile_acidity: float
-    citric_acid: float
-    residual_sugar: float
-    chlorides: float
-    free_sulfur_dioxide: float
-    total_sulfur_dioxide: float
-    density: float
-    pH: float
-    sulphates: float
-    alcohol: float
+    fixed_acidity: float=8.5
+    volatile_acidity: float=0.28
+    citric_acid: float=0.56
+    residual_sugar: float=1.8
+    chlorides: float=0.092
+    free_sulfur_dioxide: float=35
+    total_sulfur_dioxide: float=103
+    density: float=0.9969
+    pH: float=3.16
+    sulphates: float=0.75
+    alcohol: float=10.5
 
 
 # Root endpoint to redirect to /docs

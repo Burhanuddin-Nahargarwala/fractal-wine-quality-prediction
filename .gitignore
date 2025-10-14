@@ -5,3 +5,4 @@ videos/
 __pycache__/
 *.pdf
 test_early_app/
+.early.coverage
